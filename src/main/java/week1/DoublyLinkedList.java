@@ -156,8 +156,8 @@ public class DoublyLinkedList<Data> implements Iterable<Data> {
     /* Return an Iterator Object */
     @Override
     public Iterator<Data> iterator() {
-        //your code
-        return null;
+
+        return new DoublyLinkedListIterator();
     }
 
     /* Define the Iterator class, and hasNext() and next() methods */
