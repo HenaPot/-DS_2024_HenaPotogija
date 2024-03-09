@@ -29,8 +29,7 @@ public class DoublyLinkedList<Data> implements Iterable<Data> {
     /* Remove a node from the front of the doubly linked list */
     public void removeFromFront() {
         if (head == null) {
-            System.out.println("bad input lol");
-            return;
+            throw new IndexOutOfBoundsException();
         }
         head = head.next;
 
@@ -117,9 +116,11 @@ public class DoublyLinkedList<Data> implements Iterable<Data> {
                 i++;																// 4
             }
 
+
             newNode.prev = current.prev;
             newNode.next = current;
 
+            current.prev.next = newNode;
             current.prev = newNode;
             // current.next = newNode.next.next;
             size++;

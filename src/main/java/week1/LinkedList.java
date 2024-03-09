@@ -97,6 +97,7 @@ public class LinkedList<Data> implements Iterable<Data> {
 
     /* Delete an element from a linked list by index (0-index) */
     public void remove(int index) {
+        if (size == 0) throw new IndexOutOfBoundsException("Invalid linked list node.") ;
         if (index == 0) {
             head = head.next;
         }
