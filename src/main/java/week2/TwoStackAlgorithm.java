@@ -12,72 +12,68 @@ public class TwoStackAlgorithm {
         Stack<Double> valueStack = new Stack<>();
         Stack<Character> operandStack = new Stack<>();
 
-        char[] charArray = expression.toCharArray();
-
-        for (int i = 0; i < charArray.length; i++) {
-            if (Character.isDigit(charArray[i])) {
-                valueStack.push((double) charArray[i]);
+        String[] stringArray = expression.split(" ");
+        for (String s : stringArray) {
+            // if number, regardless int or double
+            if (s.length() > 1) {
+                valueStack.push(Double.parseDouble(s));
             }
-            else if (charArray[i] == '(') continue;
-            else if (charArray[i] == '+' ||
-                    charArray[i] == '-' ||
-                    charArray[i] == '*' ||
-                    charArray[i] == '/' ||
-                    charArray[i] == '%' ||
-                    charArray[i] == '^' ||
-                    charArray[i] == '√' ) {
-                operandStack.push(charArray[i]);
-            }
-            else if (charArray[i] == ')') {
-                char operand = operandStack.pop();
-                double number1 = (double) valueStack.pop();
-                double number2 = (double) valueStack.pop();
+            else {
+                char character = s.toCharArray()[0];
 
-                double result;
+                if (Character.isDigit(character)) {
+                    valueStack.push(Double.parseDouble(String.valueOf(character)));
+                }
+                else if (character == '(') continue;
+                else if (character == '+' ||
+                        character == '-' ||
+                        character == '*' ||
+                        character == '/' ||
+                        character == '%' ||
+                        character == '^' ||
+                        character == '√' ) {
+                    operandStack.push(character);
+                }
+                else if (character == ')') {
+                    char operand = operandStack.pop();
+                    double number2 = valueStack.pop();
+                    //double number1 = valueStack.pop();
 
-                if (operand == '+') {
-                    result = number1 + number2;
-                }
-                else if (operand == '-') {
-                    result = number1 - number2;
-                }
-                else if (operand == '*'){
-                    result = number1 * number2;
-                }
-                else  if (operand == '/'){
-                    result = number1 / number2;
-                }
-                else if (operand == '%') {
-                        result = number1 % number2;
-                }
-                else if (operand == '^') {
-                    result = Math.pow(number1, number2);
-                }
-                else if (operand == '√'){
-                    //ovo se mora popraviti,
-                    result = sqrt(number1);
-                }
-                else {
-                    continue;
-                }
+                    double result;
 
-                System.out.println("Result is: " + result);
-                valueStack.push(result);
-            }
+                    if (operand == '+') {
+                        result = valueStack.pop() + number2;
+                    } else if (operand == '-') {
+                        result = valueStack.pop() - number2;
+                    } else if (operand == '*') {
+                        result = valueStack.pop() * number2;
+                    } else if (operand == '/') {
+                        result = valueStack.pop() / number2;
+                    } else if (operand == '%') {
+                        result = valueStack.pop() % number2;
+                    } else if (operand == '^') {
+                        result = Math.pow(valueStack.pop(), number2);
+                    } else if (operand == '√') {
+                        result = sqrt(number2);
+                    } else {
+                        throw new IllegalArgumentException("That is not used in arithmetic!");
+                    }
 
-            try {
-                return valueStack.peek();
-            } catch (NoSuchElementException exception) {
+                    // System.out.println("Result is: " + result);
+                    valueStack.push(result);
+                }
             }
         }
-
-
-
-        // your code here (remove next line)
-        return 0.0;
+        if (valueStack.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return valueStack.pop();
     }
 
     public static void main(String[] args) {
-        System.out.println(calculate(" ( ( 5 + ( 3 * 8 ) ) - ( 2 * 7 ) )"));
+        // System.out.println(calculate(" ( ( 5 + ( 3 * 8 ) ) - ( 2 * 7 ) )"));
+        //System.out.println(calculate("( 2.7 + 5 )"));
+        //System.out.println(calculate("( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) )"));
+        System.out.println(calculate("( √ 16 )"));
     }
 }
