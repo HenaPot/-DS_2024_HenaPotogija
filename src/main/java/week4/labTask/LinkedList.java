@@ -4,7 +4,7 @@ import week1.Node;
 
 import java.util.Iterator;
 
-public class LinkedList<Data> {
+public class LinkedList<Data> implements Iterable<Data>{
 
     private static class Node<Data> {
         Data data;
@@ -128,5 +128,28 @@ public class LinkedList<Data> {
     /* Return the size of the linked list */
     public int count() {
         return size;
+    }
+
+
+    private class LinkedListIterator implements Iterator<Data> {
+        LinkedList.Node<Data> current = head;
+
+        @Override
+        public boolean hasNext() {
+            //treba current a ne current.next da ne zaboravis prvi node
+            return current != null;
+        }
+
+        @Override
+        public Data next() {
+            Data data = current.data;
+            current = current.next;
+            return data;
+        }
+    }
+
+    @Override
+    public Iterator<Data> iterator() {
+        return new LinkedListIterator();
     }
 }
