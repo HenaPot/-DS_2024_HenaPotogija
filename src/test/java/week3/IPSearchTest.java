@@ -2,7 +2,7 @@ package week3;
 
 import org.junit.jupiter.api.*;
 import week3.labTask.FileUtils;
-import week3.labTask.IPAddress;
+import week3.labTask.Entry;
 import week3.labTask.IPSearch;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class IPSearchTest {
     // IMPORTANT: DO NOT commit the entire CSV file; add it to .gitignore or keep it outside the repository.
     public static String filePath = "G:\\Faks 4\\Data Structures\\DS Labs\\Data_Structures_Labs\\IP2LOCATION.csv";
-    public static IPAddress[] ipAddresses;
+    public static Entry[] ipAddresses;
 
     @BeforeAll
     public static void setUp() {
@@ -23,7 +23,7 @@ public class IPSearchTest {
         assertNotNull(ipAddresses[0]);
         assertNotNull(ipAddresses[4637052]);
 
-        IPAddress ip = IPSearch.search(ipAddresses, "199.103.106.121");
+        Entry ip = IPSearch.search(ipAddresses, "199.103.106.121");
         assert ip != null;
         assertEquals(3345443328L, ip.getStartIp());
         assertEquals(3345443583L, ip.getEndIp());
@@ -120,7 +120,7 @@ public class IPSearchTest {
         assertNotNull(ipAddresses[0]);
         assertNotNull(ipAddresses[4637052]);
 
-        IPAddress ip = IPSearch.search(ipAddresses, "255.255.255.260");
+        Entry ip = IPSearch.search(ipAddresses, "255.255.255.260");
         assertNull(ip);
 
         ip = IPSearch.search(ipAddresses, "435.352.234.566");

@@ -1,6 +1,6 @@
 package week3.labTask;
 
-public class IPAddress /*implements Comparable<IPAddress>*/{
+public class Entry /*implements Comparable<IPAddress>*/{
     private long startIp;
     private long endIp;
     private String countryCode;
@@ -8,7 +8,7 @@ public class IPAddress /*implements Comparable<IPAddress>*/{
     private String region;
     private String city;
 
-    public IPAddress(long startIp, long endIp, String countryCode, String country, String region, String city) {
+    public Entry(long startIp, long endIp, String countryCode, String country, String region, String city) {
         this.startIp = startIp;
         this.endIp = endIp;
         this.countryCode = countryCode;

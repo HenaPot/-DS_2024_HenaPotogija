@@ -36,3 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/src/main/java/homework1/raw_phonebook_data.csv
+/src/main/java/homework1/test.csv

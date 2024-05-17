@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FileUtils {
-    public static IPAddress[] readFile(String filePath) {
+    public static Entry[] readFile(String filePath) {
 
         try {
             BufferedReader reader = new BufferedReader(
@@ -20,14 +20,14 @@ public class FileUtils {
             reader.close();
 
             // initializing output array with size of however many csv lines there are
-            IPAddress[] IPArray = new IPAddress[IPLines.length] ;
+            Entry[] IPArray = new Entry[IPLines.length] ;
 
             for (int i = 0; i < IPLines.length; i++) {
                 // each line is split into parts of the IP Address
                 String[] IPParts = IPLines[i].split(";");
 
                 // new IPAddress object is created and assigned a memory location within output array
-                IPAddress tempIPAddress = new IPAddress(
+                Entry tempIPAddress = new Entry(
                         Long.parseLong(IPParts[0]) , Long.parseLong(IPParts[1]), IPParts[2], IPParts[3], IPParts[4], IPParts[5]
                 );
                 IPArray[i] = tempIPAddress;

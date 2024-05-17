@@ -1,7 +1,7 @@
 package week3.labTask;
 
 public class IPSearch {
-    public static IPAddress search(IPAddress[] ipAddresses, String ipAddress) {
+    public static Entry search(Entry[] ipAddresses, String ipAddress) {
         int low = 0;
         int high = ipAddresses.length - 1;
 
