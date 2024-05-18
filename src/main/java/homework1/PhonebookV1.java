@@ -9,7 +9,7 @@ public class PhonebookV1 {
     public static void main(String[] args) {
         try{
             Entry[] entries = FileUtils.readFile("src/main/java/homework1/raw_phonebook_data.csv");
-            MergeSort.sort(entries);
+            MergeSort.sort(entries, Entry.getComparator("name"));
             FileUtils.writeToFile(entries, "src/main/java/homework1/test.csv");
 
             System.out.println("===================");
